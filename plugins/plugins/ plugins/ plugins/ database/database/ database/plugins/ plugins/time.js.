@@ -1,0 +1,41 @@
+
+const settings = require("../settings");
+
+async function timeCommand(sock, from, msg) {
+  const now = new Date();
+
+  const date = now.toLocaleDateString("en-GB", {
+    timeZone: "Africa/Dar_es_Salaam"
+  });
+
+  const time = now.toLocaleTimeString("en-GB", {
+    timeZone: "Africa/Dar_es_Salaam",
+    hour12: false
+  });
+
+  const text = `
+╔══════════════════════════╗
+       🕒 TIME SYSTEM
+╚══════════════════════════╝
+
+🌍 LOCATION: TANZANIA
+
+📅 DATE: ${date}
+
+⏰ TIME: ${time}
+
+🤖 BOT: ${settings.botName}
+
+🟢 STATUS: ACTIVE
+
+━━━━━━━━━━━━━━━━━━━━
+POWERED BY YASSER TECH
+━━━━━━━━━━━━━━━━━━━━
+`;
+
+  await sock.sendMessage(from, {
+    text
+  }, { quoted: msg });
+}
+
+module.exports = timeCommand;
